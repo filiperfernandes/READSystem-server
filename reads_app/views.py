@@ -65,6 +65,6 @@ def list_notifications(request):
 
 # To get the info
 # import json, urllib.request
-# j = urllib.request.urlopen('http://localhost:8000/reads/1/location/')
+# j = urllib.request.urlopen('http://localhost:8000/reads/location/1/')
 # a = json.load(j)
 # print (a['Latitude'])
