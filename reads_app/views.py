@@ -6,9 +6,8 @@ from __future__ import unicode_literals
 
 
 from django.http import HttpResponse, JsonResponse
-from django.utils import timezone
-
 from .models import Location, Notification
+from haversine import haversine
 
 
 def index(request):
@@ -49,6 +48,20 @@ def list_notifications(request):
                               "Risk": list_n[i].risk, "Source": list_n[i].source, "Date": list_n[i].pub_date})
 
     return JsonResponse(response_data, safe=False)
+
+
+def get_rsu_notifications(request, lat, lon):
+    list_n = Notification.objects.all()
+    rsu = (float(lat), float(lon))
+    to_retrive=()
+
+    for i in range(len(list_n)):
+        t_location = ( list_n[i].location.lat, list_n[i].location.lon)
+        dist = haversine(rsu, t_location)
+        if dist < 5:
+            to_retrive += (i+1,)
+    return JsonResponse(to_retrive,safe=False)
+
 
 # To get the info
 # import json, urllib.request
