@@ -28,7 +28,7 @@ SECRET_KEY = '=mk2f**b#a17u0slt57^e0h26iu@smjqzruoey-g0%i-9*@+$y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','0.0.0.0']
+ALLOWED_HOSTS = ['localhost','0.0.0.0','morning-tundra-30769.herokuapp.com']
 
 
 # Application definition
