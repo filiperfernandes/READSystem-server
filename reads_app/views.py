@@ -3,8 +3,6 @@ from __future__ import unicode_literals
 
 
 # Create your views here.
-
-
 from django.http import HttpResponse, JsonResponse
 from .models import Location, Notification
 from haversine import haversine
@@ -53,14 +51,14 @@ def list_notifications(request):
 def get_rsu_notifications(request, lat, lon):
     list_n = Notification.objects.all()
     rsu = (float(lat), float(lon))
-    to_retrive=()
+    to_retrieve=()
 
     for i in range(len(list_n)):
         t_location = ( list_n[i].location.lat, list_n[i].location.lon)
         dist = haversine(rsu, t_location)
         if dist < 5:
-            to_retrive += (i+1,)
-    return JsonResponse(to_retrive,safe=False)
+            to_retrieve += (i+1,)
+    return JsonResponse(to_retrieve,safe=False)
 
 
 # To get the info
